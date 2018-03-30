@@ -49,7 +49,7 @@ _____________________________________________________________________
 Can be derived from the pdb structure using pyrosetta, or other code.
 
 ```python
-p = pose_from_pdb('dockinginput.pdb') 
+p = pose_from_pdb('1w6y.docked_input.pdb') 
 p.sequence()
 ```
 
