@@ -1,0 +1,70 @@
+## for enzdes benchmark
+#  SJB 1-6-2016 1oh0
+#  
+# The steroid is kept in place by 2 hbonds to the carbonyl, the reaction ocurrs with the deprotonation of the alpha carbon
+# with a enol intermediate from the carbonyl and subsequent hydration of the other alkene bond leading to the product (alpha-beta alkene formation/moved from other ring)
+#
+
+#constraint to TYR residue #16 
+#anchor to the carbonyl 
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_name: O2 C1 C6
+  TEMPLATE::   ATOM_MAP: 1 residue3: 1w6
+
+  TEMPLATE::   ATOM_MAP: 2 atom_type: OH
+  TEMPLATE::   ATOM_MAP: 2 residue1:  Y
+
+  CONSTRAINT:: distanceAB:   2.7   0.50   100.0  0     0 ## 4th column means not covalent, so uses the VDW term   
+  CONSTRAINT::    angle_B:  120.0   10.00 10.00  360.00   1
+    CONSTRAINT::    torsion_B:  180.0   30.00 10.00  180.00   1
+    
+CST::END
+
+#constraint to ASP residue #103
+#anchor to the carbonyl 
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_name: O2 C1 C6
+  TEMPLATE::   ATOM_MAP: 1 residue3: 1w6
+
+  TEMPLATE::   ATOM_MAP: 2 atom_type: OOC
+  TEMPLATE::   ATOM_MAP: 2 residue1:  D
+
+  CONSTRAINT:: distanceAB:   2.7   0.50   100.0  0     0
+    CONSTRAINT::    angle_B:  120.0   10.00 10.00  360.00   1
+    CONSTRAINT::    torsion_B:  180.0   30.00 10.00  180.00   1
+    
+CST::END
+
+
+#constraint to ASP residue #40 
+# This deprotonates the ring
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_name: C2 C3 C7
+  TEMPLATE::   ATOM_MAP: 1 residue3: 1w6
+
+  TEMPLATE::   ATOM_MAP: 2 atom_name: OD2 CG CB
+  TEMPLATE::   ATOM_MAP: 2 residue1:  D
+
+  CONSTRAINT:: distanceAB:   3.0   0.30   100.0  0     0
+  
+    CONSTRAINT::    angle_B:  120.0   20.00 10.00  360.00   1
+        CONSTRAINT::    torsion_B:  -180.0   60.00 10.00  360.00   1
+    
+CST::END
+
+
+#constraint to ASP residue #40 
+# This deprotonates the ring
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_name: C7 C3 C2
+  TEMPLATE::   ATOM_MAP: 1 residue3: 1w6
+
+  TEMPLATE::   ATOM_MAP: 2 atom_name: OD2 CG CB
+  TEMPLATE::   ATOM_MAP: 2 residue1:  D
+
+  CONSTRAINT:: distanceAB:   3.0   0.50   100.0  0     0
+  
+    CONSTRAINT::    angle_B:  120.0   20.00 10.00  360.00   1
+        CONSTRAINT::    torsion_B:  -180.0   60.00 10.00  360.00   1
+    
+CST::END

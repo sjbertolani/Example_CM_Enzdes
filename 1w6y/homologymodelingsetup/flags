@@ -1,0 +1,42 @@
+# you might need this, but it must match the same rosetta in the run.sh $ROSETTA_BIN variable
+#-database /home/bertolan/rosetta_new/Rosetta/database
+
+
+# your input fasta file
+-in:file:fasta 1w6y.fasta
+
+# this is the xml protocol you want to be run by the binary
+# you must have this when calling rosetta_scripts binary
+-parser:protocol hybridize.xml
+
+# input fragment files - this is option, but should lead to higher accuracy models at the atomistic level
+# the tradeoff is you get less diverse sampling of fragments
+-frag3 ./fragments/1w6y_.200.3mers
+-frag9 ./fragments/1w6y_.200.9mers
+
+
+#   These options are from the approx 2014 version of hybridize. They will not match what's currently in the documentation
+#
+-nstruct 10
+
+-relax:minimize_bond_angles
+-relax:minimize_bond_lengths
+-relax:jump_move true
+-default_max_cycles 200
+-relax:min_type lbfgs_armijo_nonmonotone
+-relax:jump_move true
+
+-use_bicubic_interpolation
+-hybridize:stage1_probability 1.0
+-sog_upper_bound 10
+-use_bicubic_interpolation
+-relax:cartesian
+-relax:default_repeats 2
+
+# this is purely a speed up for the older version of rosetta. But, if you ever want to use DNA or virtual atoms, you will need to edit this line
+#
+
+-chemical:exclude_patches LowerDNA  UpperDNA Cterm_amidation SpecialRotamer VirtualBB ShoveBB VirtualDNAPhosphate VirtualNTerm CTermConnect sc_orbitals pro_hydroxylated_case1 pro_hydroxylated_case2 ser_phosphorylated thr_phosphorylated  tyr_phosphorylated tyr_sulfated lys_dimethylated lys_monomethylated  lys_trimethylated lys_acetylated glu_carboxylated cys_acetylated tyr_diiodinated N_acetylated C_methylamidated MethylatedProteinCterm
+
+
+-score:weights stage3.wts
