@@ -41,7 +41,17 @@ $ROSETTA_BIN/partial_thread.default.linuxgccrelease -in:file:fasta 1w6y.fasta -i
 PATHTHATCONTAINSPDBS - these pdb codes and files must match the names in the alignment.grishin file
 
 ---
+*How to measure and create the upweighted constraints to add to the bottom of the upweighted file using the modelsysteminputs structure.*
 
+Create Upweighted Constraints Simple ipynb - requires PyRosetta4
+---
+
+See this file , which essentially takes a list of catalytic resides and a pdb structure. Then it pulls the CA and CB xyz coordinates and calculates the distances, finally returning the data that is needed to add to the upweight.alignment.grishin.cst file.
+
+You can run locally or this will be rendered on github when you view it.
+
+
+---
 *fragment files*
 ---
 
